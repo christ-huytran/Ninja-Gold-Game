@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request, session, url_for
+from datetime import datetime
 import random
 
 app = Flask(__name__)
@@ -30,13 +31,21 @@ def process_money():
 		gold = random.randrange(-50,51)
 
 	activity = ''
+	time = datetime.now().strftime('%Y/%m/%d %I:%M %p')
 	if gold >= 0:
 		activity += 'Earned ' + str(gold) + ' golds from the ' + str(request.form['building'])
 	else:
-		activity += 'Entered a casino and lost ' + str(gold) + ' golds... Ouch...'
+		activity += 'Entered a casino and lost ' + str(gold) + ' golds... Ouch...' 
 	
+	activity += '! (' + str(time) + ')'
 	session['gold'] += gold
-	session['activities'].append(activity)
+	session['activities'].insert(0, activity)
+	return redirect(url_for('index'))
+
+@app.route('/reset')
+def reset():
+	session.pop('gold')
+	session.pop('activities')
 	return redirect(url_for('index'))
 
 app.run(debug=True)

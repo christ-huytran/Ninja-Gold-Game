@@ -56,10 +56,17 @@
 			<div id='activities'>
 				{% if session['activities'] %}
 					{% for activity in session['activities'] %}
-						<p>{{ activity }}</p>
+						{% if 'Earned' not in activity %}
+							<p class='lose'>{{ activity }}</p>
+						{% else %}
+							<p class='win'>{{ activity }}</p>
+						{% endif %}
 					{% endfor %}
 				{% endif %}
 			</div>
+		</div>
+		<div class='row text-center'>
+			<a href="/reset" class='btn btn-primary'>Replay</a>
 		</div>
 	</div>
 </body>
