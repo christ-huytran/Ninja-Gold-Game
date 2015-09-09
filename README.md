@@ -1,9 +1,9 @@
 # Ninja Gold Game
 
-A mini-game that runs on the Flask micro-framework in Python
+A mini-game that runs on the Flask microframework for Python
 
 ## To Run Locally
-Note: Skip this step if you already have virtualenv installed
+Note: The creator of Flask recommends setting up virtualenv to avoid running into Python libraries version compatibility issues. Skip this step if you already have virtualenv and Flask installed on your system (you can simply start by running Python server).
 ```
 # Install Virtual Environment
 sudo pip install virtualenv
